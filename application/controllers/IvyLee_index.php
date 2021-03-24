@@ -12,6 +12,7 @@ class IvyLee_index extends CI_Controller
 
 	public function index($year = false, $month = false)
 	{
+		$data['title'] = 'Home';
 		$date = new DateTime();
 		if ($year === false) {
 			$data['year'] = $date->format('Y');
@@ -32,20 +33,20 @@ class IvyLee_index extends CI_Controller
 
         {table_open}<table border="0" cellpadding="0" cellspacing="0">{/table_open}
 
-        {heading_row_start}<tr>{/heading_row_start}
+        {heading_row_start}<tr class="cal_header">{/heading_row_start}
 
         {heading_previous_cell}<th><a href="{previous_url}">&lt;&lt;</a></th>{/heading_previous_cell}
-        {heading_title_cell}<th colspan="{colspan}">{heading}</th>{/heading_title_cell}
+        {heading_title_cell}<th colspan="{colspan}" class="h1 m-5">{heading}</th>{/heading_title_cell}
         {heading_next_cell}<th><a href="{next_url}">&gt;&gt;</a></th>{/heading_next_cell}
 
         {heading_row_end}</tr>{/heading_row_end}
 
-        {week_row_start}<tr>{/week_row_start}
-        {week_day_cell}<td>{week_day}</td>{/week_day_cell}
+        {week_row_start}<tr class="week_name_row">{/week_row_start}
+        {week_day_cell}<td class="week_name_data h5">{week_day}</td>{/week_day_cell}
         {week_row_end}</tr>{/week_row_end}
 
-        {cal_row_start}<tr>{/cal_row_start}
-        {cal_cell_start}<td>{/cal_cell_start}
+        {cal_row_start}<tr class="cal_row">{/cal_row_start}
+        {cal_cell_start}<td class="cal_data">{/cal_cell_start}
         {cal_cell_start_today}<td>{/cal_cell_start_today}
         {cal_cell_start_other}<td class="other-month">{/cal_cell_start_other}
 
@@ -89,7 +90,7 @@ class IvyLee_index extends CI_Controller
 
 	public function edit_page($month, $day)
 	{
-		$month_name = [
+		$data['month_name'] = [
 			'January', 
 			'Febuary', 
 			'March', 
@@ -104,7 +105,7 @@ class IvyLee_index extends CI_Controller
 			'December' 
 		];
 		$data['title'] = 'To Do List';
-		$data['month'] = $month_name[$month-1];
+		$data['month'] = $month;
 		$data['day'] = $day;
 
 		$this->load->view('templates/header', $data);
@@ -114,6 +115,6 @@ class IvyLee_index extends CI_Controller
 
 	public function edit()
 	{
-		
+
 	}
 }
